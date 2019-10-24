@@ -1,5 +1,6 @@
 class ClimbsController < ApplicationController
   require 'json'
+  before_action :set_climb, only: [:show]
 
   def index
     @climbs = Climb.all
@@ -20,16 +21,21 @@ class ClimbsController < ApplicationController
   end
 
   def show
-    @climb = Climb.find(params[:id])
+    # set_climb see above
     @tick = Tick.new
     @weather = RestClient::Request.execute(
       method: :get,
       url: "https://api.openweathermap.org/data/2.5/weather?q=#{@climb.location}",
-      headers: {params: {APPID: 'c73f08fee93fdb4ccc020fc6777b9b11'}})
+      headers: {params: {APPID: ENV['APPID']}})
     @weather = JSON.parse(@weather)
   end
 
   private
+
+  def set_climb
+    @climb = Climb.find(params[:id])
+  end
+
 
   def climb_params
     params.require(:climb).permit(:name, :length, :difficulty, :location)
