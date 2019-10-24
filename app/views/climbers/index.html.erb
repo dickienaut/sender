@@ -1,0 +1,13 @@
+
+<%= button_to "Create Climber", new_climber_path, method: :get, class: "button" %>
+<%= button_to "View Climbs", climbs_path, method: :get, class: "button" %>
+
+
+<h1>All the Climbers</h1>
+<ul>
+  <% @climbers.each do |climber| %>
+    <li>
+      <%= link_to climber.name, climber %>
+    </li>
+  <% end %>
+</ul>

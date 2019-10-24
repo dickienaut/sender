@@ -1,0 +1,16 @@
+<%= form_for @tick do |f|%>
+
+    <%= f.label :climber_id, "Climber" %> <br>
+    <%= f.collection_select :climber_id, Climber.all, :id, :name, prompt: true %><br>
+    <%#                      should match label, collection, what you want, what they see %>
+    <%= f.label :climb_id, "Climb" %> <br>
+    <%= f.collection_select :climb_id, Climb.all, :id, :name, prompt: true %><br>
+    <%# <%= f.hidden_field :climb_id %>
+
+
+    <%# <%= f.label :climb_id, "Climb" %><br>
+    <%# <%= f.number_field :climb_id %><br>
+    <%# <% byebug %>
+
+    <%= f.submit %>
+<% end %>

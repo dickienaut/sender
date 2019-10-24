@@ -1,0 +1,32 @@
+<h1> Name:  <%= @climb.name %></h1>
+
+<h1> Location:  <%= @climb.location %></h1>
+
+<h1> Length:  <%= @climb.length %> feet </h1>
+
+<h1> Difficulty:  <%= @climb.difficulty %></h1>
+
+<h1> Temperature:  <%= (@weather['main']['temp'] - 273.15).round(2) %> Celsius </h1>
+
+<h1> Humidity:  <%= (@weather['main']['humidity']) %>% </h1>
+
+
+
+<h1>All Ticks</h1>
+<ul>
+  <% @climb.climbers.each do |climber| %>
+    <li>
+      <%= link_to climber.name, climber %>
+    </li>
+  <% end %>
+</ul>
+
+
+<h3>Create a New Tick</h3>
+<%= form_for @tick do |f| %>
+  <%= f.label :climber_id, "Climber" %><br>
+  <%= f.collection_select :climber_id, Climber.all, :id, :name, prompt: false %> <br>
+  <%= f.hidden_field :climb_id, value: @climb.id %>
+  <%= f.submit %>
+<% end %>
+<%= button_to "Back to Climbs", climbs_path, method: :get, class: "button" %>

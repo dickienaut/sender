@@ -1,0 +1,15 @@
+<%= button_to "View Climbers", climbers_path, method: :get, class: "button" %>
+<%= button_to "View Climbs", climbs_path, method: :get, class: "button" %>
+<%= button_to "Create Tick", new_tick_path, method: :get, class: "button" %>
+
+
+<h1><%= @climber.name %></h1>
+
+<h1>All My Climbs</h1>
+<ul>
+  <% @climber.climbs.each do |climb| %>
+    <li>
+      <%= link_to climb.name, climb %>
+    </li>
+  <% end %>
+</ul>
