@@ -2,6 +2,12 @@
 <%= button_to "View Climbs", climbs_path, method: :get, class: "button" %>
 <%= button_to "Create Tick", new_tick_path, method: :get, class: "button" %>
 
+<% if @current_climber.id == @climber.id %>
+  <%= button_to "Edit Climber", edit_climber_path, method: :get, class: "button" %>
+  <%= link_to "Delete", @climber, method: :delete %>
+<% end %>
+
+
 
 <h1><%= @climber.name %></h1>
 

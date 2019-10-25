@@ -1,13 +1,15 @@
 class Climber < ApplicationRecord
   has_many :comments
   has_many :climbs, through: :comments
-  has_many :ticks
+  has_many :ticks, dependent: :destroy
   has_many :climbs, through: :ticks
   has_many :subscriptions
   has_many :articles, through: :subscriptions
 
   validates :username, uniqueness: true
   has_secure_password
+
+
 
   # def password=(plaintext_password)
   #   self.password_digest = BCrypt::Password.create(plaintext_password)

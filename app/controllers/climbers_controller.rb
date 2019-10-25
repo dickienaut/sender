@@ -1,4 +1,10 @@
 class ClimbersController < ApplicationController
+  before_action :set_climber, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_climber, only: [:edit, :update, :destroy]
+  skip_before_action :authorized, only: [:new, :create]
+
+
+
   def index
     @climbers = Climber.all
   end
@@ -24,13 +30,46 @@ class ClimbersController < ApplicationController
     # end
     # session["page_views"] = session["page_views"] - 1
     # @page_views = session["page_views"]
-    @climber = Climber.find(params[:id])
+    # @climber = Climber.find(params[:id])
+  end
+
+
+  def edit
+    # @climber = Climber.find(params[:id])
+    render :edit
+  end
+
+
+  def update
+    # @climber = Climber.find(params[:id])
+    @climber.update(climber_params)
+
+    redirect_to @climber
+  end
+
+
+  def destroy
+    # @climber = Climber.find(params[:id])
+    @climber.destroy
+
+    redirect_to climbs_path
   end
 
   private
+
+  def authorize_climber
+    if @climber != @current_climber
+      redirect_to climbs_path
+    end
+  end
+
 
   def climber_params
     params.require(:climber).permit(:name, :username, :password)
   end
 
+
+  def set_climber
+    @climber = Climber.find(params[:id])
+  end
 end

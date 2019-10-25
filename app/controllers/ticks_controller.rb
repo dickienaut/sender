@@ -8,7 +8,8 @@ class TicksController < ApplicationController
   end
 
   def create
-    @tick = Tick.create(tick_params)
+    merged_params = tick_params.merge(climber_id: @current_climber.id)
+    @tick = Tick.create(merged_params)
     # climb = Climb.find(tick_params[:climb_id])
     if @tick.valid?
       redirect_to climb_path(@tick.climb)
