@@ -18,11 +18,11 @@ class ClimbersController < ApplicationController
   end
 
   def show
-    if session["page_views"] == nil
-      session["page_views"] = 5
-    end
-    session["page_views"] = session["page_views"] - 1
-    @page_views = session["page_views"]
+    # if session["page_views"] == nil
+    #   session["page_views"] = 5
+    # end
+    # session["page_views"] = session["page_views"] - 1
+    # @page_views = session["page_views"]
     @climber = Climber.find(params[:id])
   end
 
