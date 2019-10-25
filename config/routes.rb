@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :climbers, only: [:index, :new, :show, :create, :edit, :update, :destroy]
   resources :climbs, only: [:index, :new, :show, :create]
   resources :ticks, only: [:new, :create]
+  get 'sessions/destroy'
 
   root 'climbs#index'
 
@@ -10,6 +11,6 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
 end

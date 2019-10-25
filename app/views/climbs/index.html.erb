@@ -1,11 +1,3 @@
-
-<%= button_to "Create Climb", new_climb_path, method: :get, class: "button" %>
-<%= button_to "View Climbers", climbers_path, method: :get, class: "button" %>
-<%= button_to "Sign Up", new_climber_path, method: :get, class: "button" %>
-<%= button_to "Login", login_path, method: :get, class: "button" %>
-<%= button_to "Logout", '/logout', method: :delete, class: "button" %>
-
-
 <h1>All the Climbs</h1>
 <ul>
   <% @climbs.each do |climb| %>

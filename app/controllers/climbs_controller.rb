@@ -28,6 +28,8 @@ class ClimbsController < ApplicationController
       url: "https://api.openweathermap.org/data/2.5/weather?q=#{@climb.location}",
       headers: {params: {APPID: ENV['APPID']}})
     @weather = JSON.parse(@weather)
+
+    
   end
 
   private
