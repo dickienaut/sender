@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'rest-client'
 
+gem 'bcrypt'
 
 gem 'dotenv-rails'
 
