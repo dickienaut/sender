@@ -10,6 +10,7 @@ class ClimbersController < ApplicationController
   def create
     climber = Climber.create(climber_params)
     if climber.valid?
+      session[:climber_id] = climber.id
       redirect_to climber
     else
       flash[:errors] = climber.errors.full_messages
@@ -29,7 +30,7 @@ class ClimbersController < ApplicationController
   private
 
   def climber_params
-    params.require(:climber).permit(:name)
+    params.require(:climber).permit(:name, :username, :password)
   end
 
 end
